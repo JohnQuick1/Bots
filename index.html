@@ -3,29 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Магазинчик солодощів</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /* Загальні стилі для всього сайту */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Резиновий контейнер для вмісту */
-    .container {
-      max-width: 1200px; /* Максимальна ширина контенту */
-      margin: 0 auto; /* Вирівнювання контейнера по центру */
-      padding: 20px;
-    }
-
-    /* Медіа-запити для адаптивності */
-    @media (max-width: 768px) {
-      .container {
-        padding: 10px; /* Змінюємо відступ для маленьких екранів */
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -42,6 +19,20 @@
             <button id="order">оформити</button>
         </form>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let buy = document.getElementById("buy");
+        let order = document.getElementById("order");
+
+        buy.addEventListener("click", () => {
+            document.getElementById("main").style.display = "none";
+            document.getElementById("form").style.display = "block";
+            document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;
+        })
+        order.addEventListener("click", () => {
+            tg.close();
+        })
+    </script>
 
 </body>
 </html>
